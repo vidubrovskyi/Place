@@ -1,0 +1,38 @@
+<%= form_with model: @shop do |shop| %>
+  <div>
+    <%= shop.label :name %>
+    <%= shop.text_field :name, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :address %>
+    <%= shop.text_field :address, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :description %>
+    <%= shop.text_field :description, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :contact %>
+    <%= shop.text_field :contact, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :place_type %>
+    <%= shop.text_field :place_type, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :benefits %>
+    <%= shop.text_field :benefits, required: true %>
+  </div>
+
+  <div>
+    <%= shop.label :images %>
+    <%= shop.file_field :images, multiple: true, required: true %>
+  </div>
+
+  <%= shop.submit "Submit" %>
+<% end %>

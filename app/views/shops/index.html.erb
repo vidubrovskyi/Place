@@ -1,0 +1,18 @@
+<%= link_to "Add new place", new_shop_path %>
+
+<% @shops.each do |shop| %>
+  <p><%= shop.name %></p>
+  <p><%= shop.address %></p>
+  <p><%= shop.description %></p>
+  <p><%= shop.contact %></p>
+  <p><%= shop.place_type %></p>
+  <p><%= shop.benefits %></p>
+  <% if shop.images.attached? %>
+    <% shop.images.each do |image| %>
+      <p><%= image_tag image, width: "100px" %></p>
+    <% end %>
+  <% end %>
+  <p><%= link_to "Show", shop_path(shop) %></p>
+  <p><%= link_to "Edit", edit_shop_path(shop) %></p>
+  <p><%= link_to "Delete", shop_path(shop), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %></p>
+<% end %>
