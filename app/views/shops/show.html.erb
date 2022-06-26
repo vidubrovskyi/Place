@@ -12,3 +12,5 @@
 <p><%= link_to "Back", shops_path %></p>
 <p><%= link_to "Edit", edit_shop_path(@shop) %></p>
 <p><%= link_to "Delete", shop_path(@shop), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %></p>
+
+<%= render "reviews/form" %>

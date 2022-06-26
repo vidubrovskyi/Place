@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :shops
+  has_many :reviews
+
 end

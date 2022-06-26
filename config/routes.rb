@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   root "static_page#index"
 
-  resources :shops
+  resources :shops do
+    resources :reviews
+  end
 end

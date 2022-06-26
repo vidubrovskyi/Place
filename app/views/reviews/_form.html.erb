@@ -1,0 +1,9 @@
+<%= form_with(model: [@shop, @shop.reviews.build], local: true) do |review| %>
+  <%= review.text_field :message, required: true %>
+  <%= review.submit "Submit" %>
+<% end %>
+
+<% for review in @shop.reviews %>
+  <%= review.message %>
+  <%= link_to 'Edit', edit_shop_review_path(@shop, review) %>
+<% end %>
