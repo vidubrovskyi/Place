@@ -1,3 +1,16 @@
+<%#= select_tag "filter", options_for_select(["bar", "pizza"]) %>
+<%#= filter("bar") %>
+<%#= link_to_if @shop.place_type == name, 'Poster', :controller => 'users',
+               :action => 'show', :id => message.user %>
+
+<div class="block">
+  <% @shops.each do |shop| %>
+    <%= shop.place_type %>
+  <% end %>
+</div>
+
+
+
 <%= link_to "Add new place", new_shop_path %>
 
 <% @shops.each do |shop| %>

@@ -1,4 +1,8 @@
-<div>
-  <h1 class="font-bold text-4xl">Reviews#edit</h1>
-  <p>Find me in app/views/reviews/edit.html.erb</p>
-</div>
+<%= form_with(model: [@shop, @review], local: true) do |review| %>
+  <div>
+    <%= review.label :message %>
+    <%= review.text_field :message, required: true %>
+  </div>
+
+  <%= review.submit "Submit" %>
+<% end %>

@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
 
   before_action :get_shop
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def index
     @reviews = @shop.reviews
   end
 
   def show
-    @review = @shop.reviews.find(params[:id])
   end
 
   def new
@@ -25,11 +25,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = @shop.reviews.find(params[:id])
   end
 
   def update
-    @review = @shop.reviews.find(params[:id])
     if @review.update review_params
       redirect_to shop_path(@shop)
     else
@@ -38,13 +36,18 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-
+    @review.destroy
+    redirect_to shop_path(@shop)
   end
 
   private
 
   def get_shop
     @shop = Shop.find(params[:shop_id])
+  end
+
+  def set_review
+    @review = @shop.reviews.find(params[:id])
   end
 
   def review_params
