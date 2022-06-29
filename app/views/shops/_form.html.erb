@@ -21,12 +21,17 @@
 
   <div>
     <%= shop.label :place_type %>
-    <%= shop.text_field :place_type, required: true %>
+    <%= shop.select :place_type, Shop::PLACETYPE %>
   </div>
 
   <div>
-    <%= shop.label :benefits %>
-    <%= shop.text_field :benefits, required: true %>
+    <%= shop.label "Benefits:" %><br />
+    <%= shop.collection_check_boxes :benefit_ids, Benefit.all, :id, :children do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
   </div>
 
   <div>

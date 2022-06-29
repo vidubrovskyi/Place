@@ -3,7 +3,6 @@
 <p><%= @shop.description %></p>
 <p><%= @shop.contact %></p>
 <p><%= @shop.place_type %></p>
-<p><%= @shop.benefits %></p>
 <% if @shop.images.attached? %>
   <% @shop.images.each do |image| %>
     <p><%= image_tag image, width: "100px" %></p>
