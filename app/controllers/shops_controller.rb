@@ -3,7 +3,9 @@ class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shops = Shop.all
+    #@shops = Shop.all
+    @search = Shop.ransack(params[:q])
+    @shops = @search.result(distinct: true)
   end
 
   def new
@@ -41,7 +43,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :address, :description, :contact, :place_type, benefit_ids: [], images: [])
+    params.require(:shop).permit(:name, :address, :description, :contact, benefit_ids: [], pt_ids: [], images: [])
   end
 
   def set_shop

@@ -1,16 +1,33 @@
-<%#= select_tag "filter", options_for_select(["bar", "pizza"]) %>
-<%#= filter("bar") %>
-<%#= link_to_if @shop.place_type == name, 'Poster', :controller => 'users',
-               :action => 'show', :id => message.user %>
+<fieldset class="search-field">
+  <legend>Search Our Database</legend>
+  <%= search_form_for @search do |f| %>
 
-<% @shops.each do |shop| %>
-  <div class="block mb-2">
-    <%= check_box_tag :place_type%>
-    <%= shop.place_type %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label "Benefits" %><br />
+      <%= f.collection_check_boxes :benefits_id_in_any, Benefit.all, :id, :children do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Place type" %><br />
+      <%= f.collection_check_boxes :pts_id_in_any, Pt.all, :id, :pt do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</fieldset>
 _________________
 <br>
+
 
 <%= link_to "Add new place", new_shop_path %>
 
@@ -19,7 +36,8 @@ _________________
   <p><%= shop.address %></p>
   <p><%= shop.description %></p>
   <p><%= shop.contact %></p>
-  <p><%= shop.place_type %></p>
+  <p><%= shop.benefits.map(&:children).sort.join(", ") %></p>
+  <p><%= shop.pts.map(&:pt).sort.join(", ") %></p>
   <% if shop.images.attached? %>
     <% shop.images.each do |image| %>
       <p><%= image_tag image, width: "100px" %></p>

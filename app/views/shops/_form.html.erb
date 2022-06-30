@@ -20,8 +20,13 @@
   </div>
 
   <div>
-    <%= shop.label :place_type %>
-    <%= shop.select :place_type, Shop::PLACETYPE %>
+    <%= shop.label "Pts:" %><br />
+    <%= shop.collection_check_boxes :pt_ids, Pt.all, :id, :pt do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
   </div>
 
   <div>

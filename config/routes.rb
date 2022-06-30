@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :benefits
 
   devise_for :users, controllers: {registrations: "users/registrations",
                                    sessions: "users/sessions"}
@@ -9,4 +8,7 @@ Rails.application.routes.draw do
   resources :shops do
     resources :reviews
   end
+  resources :benefits
+  resources :pts
+
 end

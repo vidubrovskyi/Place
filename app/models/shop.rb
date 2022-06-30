@@ -3,6 +3,7 @@ class Shop < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_and_belongs_to_many :benefits
+  has_and_belongs_to_many :pts
 
   has_many_attached :images
 

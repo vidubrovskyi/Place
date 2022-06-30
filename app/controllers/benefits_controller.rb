@@ -22,39 +22,26 @@ class BenefitsController < ApplicationController
   # POST /benefits or /benefits.json
   def create
     @benefit = Benefit.new(benefit_params)
-
-    respond_to do |format|
       if @benefit.save
-        format.html { redirect_to benefit_url(@benefit), notice: "Benefit was successfully created." }
-        format.json { render :show, status: :created, location: @benefit }
+        redirect_to benefits_path
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @benefit.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /benefits/1 or /benefits/1.json
   def update
-    respond_to do |format|
       if @benefit.update(benefit_params)
-        format.html { redirect_to benefit_url(@benefit), notice: "Benefit was successfully updated." }
-        format.json { render :show, status: :ok, location: @benefit }
+        redirect_to benefits_path
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @benefit.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /benefits/1 or /benefits/1.json
   def destroy
     @benefit.destroy
-
-    respond_to do |format|
-      format.html { redirect_to benefits_url, notice: "Benefit was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to benefits_path
   end
 
   private
