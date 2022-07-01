@@ -1,9 +1,11 @@
+
 <% for review in @shop.reviews %>
-  <%= review.message %>
-  <%= link_to 'Edit', edit_shop_review_path(@shop, review) %>
+ <div>
+    <%= review.message %>
+    <%= link_to 'Edit', edit_shop_review_path(@shop, review) %>
+ </div>
   <%#= link_to 'Delete', [@shop, review], data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
 <% end %>
-
 
 
 <%= form_with(model: [@shop, @shop.reviews.build], local: true) do |review| %>

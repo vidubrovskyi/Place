@@ -1,0 +1,55 @@
+<div id="<%= dom_id shop %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= shop.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= shop.address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= shop.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Contact:</strong>
+    <%= shop.contact %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Benefits:</strong>
+    <%= shop.benefits.map(&:children).sort.join(", ") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Place type:</strong>
+    <%= shop.pts.map(&:pt).sort.join(", ") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Images:</strong>
+    <% if shop.images.attached? %>
+      <% shop.images.each do |image| %>
+        <p><%= image_tag image, width: "100px" %></p>
+      <% end %>
+    <% end %>
+  </p>
+
+  Upvotes: <%= shop.cached_votes_up %>
+  Downvotes: <%= shop.cached_votes_down %>
+  Score: <%= shop.cached_weighted_score %>
+  Total votes: <%= shop.cached_weighted_average %>
+
+  <%= button_to upvote_label(shop, current_user), vote_shop_path(shop, type: :upvote), method: :patch, style: upvote_label_styles(shop, current_user)%>
+  <%= button_to downvote_label(shop, current_user), vote_shop_path(shop, type: :downvote), method: :patch, style: downvote_label_styles(shop, current_user) %>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this place", shop, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this place', edit_shop_path(shop), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Delete", shop, data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

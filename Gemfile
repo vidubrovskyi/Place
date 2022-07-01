@@ -80,3 +80,7 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "devise", "~> 4.8"
 
 gem "ransack", "~> 3.2"
+
+gem "pagy", "~> 5.10"
+
+gem "acts_as_votable", "~> 0.13.2"

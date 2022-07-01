@@ -30,20 +30,11 @@ _________________
 
 
 <%= link_to "Add new place", new_shop_path %>
+<div id="shops">
 
-<% @shops.each do |shop| %>
-  <p><%= shop.name %></p>
-  <p><%= shop.address %></p>
-  <p><%= shop.description %></p>
-  <p><%= shop.contact %></p>
-  <p><%= shop.benefits.map(&:children).sort.join(", ") %></p>
-  <p><%= shop.pts.map(&:pt).sort.join(", ") %></p>
-  <% if shop.images.attached? %>
-    <% shop.images.each do |image| %>
-      <p><%= image_tag image, width: "100px" %></p>
-    <% end %>
-  <% end %>
-  <p><%= link_to "Show", shop_path(shop) %></p>
-  <p><%= link_to "Edit", edit_shop_path(shop) %></p>
-  <p><%= link_to "Delete", shop_path(shop), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %></p>
-<% end %>
+  <%= render @shops %>
+
+  <%== pagy_next_link(@pagy, text:'More...', link_extra: 'id="next_link"') %>
+
+</div>
+

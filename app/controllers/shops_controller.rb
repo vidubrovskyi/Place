@@ -1,11 +1,30 @@
 class ShopsController < ApplicationController
 
-  before_action :set_shop, only: [:show, :edit, :update, :destroy]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :vote]
 
   def index
-    #@shops = Shop.all
     @search = Shop.ransack(params[:q])
-    @shops = @search.result(distinct: true)
+    #@shops = @search.result(distinct: true)
+    @pagy, @shops = pagy(@search.result(distinct: true), items: 2)
+  end
+
+  def vote
+    case params[:type]
+    when "upvote"
+      @shop.upvote!(current_user)
+    when "downvote"
+      @shop.downvote!(current_user)
+    else
+      return redirect_to request.url, alert: "no such vote type"
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to @shop
+      end
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(@shop, partial:"shops/shop", locals: {shop: @shop})
+      end
+    end
   end
 
   def new
