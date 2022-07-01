@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  include Pagy::Frontend
+
   def full_title(page_title="")
     base_title = "Cherkasy"
     if page_title.empty?
@@ -8,5 +11,4 @@ module ApplicationHelper
     end
   end
 
-  include Pagy::Frontend
 end

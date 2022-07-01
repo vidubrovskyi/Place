@@ -30,11 +30,13 @@ _________________
 
 
 <%= link_to "Add new place", new_shop_path %>
-<div id="shops">
 
+
+<div id="shops" class="min-w-full">
   <%= render @shops %>
+</div>
 
-  <%== pagy_next_link(@pagy, text:'More...', link_extra: 'id="next_link"') %>
-
+<div id="next_link">
+  <%= button_to "next", pagy_url_for(@pagy, @pagy.next) %>
 </div>
 

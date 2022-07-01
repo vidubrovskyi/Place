@@ -7,16 +7,11 @@ Rails.application.routes.draw do
 
   resources :shops do
     resources :reviews
-  end
 
-  resources :shops do
     collection do
       post :index
     end
-  end
 
-
-  resources :shops do
     member do
       patch :vote
     end
