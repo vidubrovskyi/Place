@@ -4,12 +4,10 @@ class Shop < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_and_belongs_to_many :benefits
   has_and_belongs_to_many :pts
+  has_and_belongs_to_many :prices
 
   has_many_attached :images
-
-  PLACETYPE = ["Lounge-бари", "Гриль-бари", "Дитячі заклади", "Кальян-бари",
-               "Кафе", "Паби, бари", "Піцерії", "Ресторани", "Спорт-бари",
-               "Суші-бари", "Фаст-фуди" ]
+  has_one_attached :avatar
 
   acts_as_votable
 

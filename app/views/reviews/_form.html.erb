@@ -1,15 +1,45 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
 
 <% for review in @shop.reviews %>
- <div>
-    <%= review.message %>
-    <%= link_to 'Edit', edit_shop_review_path(@shop, review) %>
- </div>
-  <%#= link_to 'Delete', [@shop, review], data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+  <div class="container mt-3 flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-white">
+    <div class="flex justify-between p-4">
+      <div class="flex space-x-4">
+        <div>
+          <% if User.find(review.user_id).avatar.attached? %>
+            <%= image_tag User.find(review.user_id).avatar, class: "object-cover w-12 h-12 rounded-full dark:bg-gray-500" %>
+          <% else %>
+            <img class="object-cover w-12 h-12 rounded-full dark:bg-gray-500" src="https://st2.depositphotos.com/47577860/46283/v/450/depositphotos_462836132-stock-illustration-assassin-deadpool-face-icon.jpg" alt="">
+          <% end %>
+        </div>
+        <div>
+          <h4 class="font-bold"><%= User.find(review.user_id).name %> <%= User.find(review.user_id).last_name %></h4>
+          <span class="text-xs dark:text-gray-400"><%= review.created_at.strftime("%B %d, %Y") %></span>
+        </div>
+      </div>
+      <% if user_signed_in? and current_user.id == review.user_id %>
+        <div class="flex items-center space-x-2">
+          <%= link_to(edit_shop_review_path(@shop, review), class: "text-gray-400 hover:text-violet-400 mr-2") do %>
+            <i class="material-icons-outlined text-base">edit</i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="p-4 space-y-2 text-sm dark:text-gray-500">
+      <p><%= review.message %></p>
+    </div>
+  </div>
 <% end %>
 
-
-<%= form_with(model: [@shop, @shop.reviews.build], local: true) do |review| %>
-  <%= review.text_field :message, required: true %>
-  <%= review.submit "Submit" %>
+<% if user_signed_in? %>
+  <div class="w-full max-w-lg mx-auto">
+    <%= form_with(model: [@shop, @shop.reviews.build], local: true) do |review| %>
+      <div class="flex items-center py-2 rounded-lg">
+         <%= review.text_area :message, required: true, class: "block mr-2 p-1 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500", placeholder: "Ваш відгук" %>
+         <%= review.submit "Відправити", class: "px-8 py-2 font-semibold border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400"%>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 

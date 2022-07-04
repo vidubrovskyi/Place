@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :prices
 
   devise_for :users, controllers: {registrations: "users/registrations",
                                    sessions: "users/sessions"}
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
     member do
       patch :vote
+      get :hovercard
     end
   end
 

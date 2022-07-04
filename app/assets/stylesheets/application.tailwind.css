@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hoverWrapper #hoverContent {
+    display: none;
+    position: absolute;
+    padding: 30 px;
+    border-radius: 4px;
+}
+
+.hoverWrapper:hover #hoverContent {
+    display: block;
+}

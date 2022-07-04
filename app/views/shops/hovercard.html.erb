@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(@shop, :thumbnail) do %>
+  <section class="mt-8 ">
+    <div class="container flex flex-col justify-center p-4 mx-auto">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
+        <% if @shop.images.attached? %>
+          <% @shop.images.each do |image| %>
+            <p><%= image_tag image, class: "object-cover h-52 w-52 aspect-square" %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

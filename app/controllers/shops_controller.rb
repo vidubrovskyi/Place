@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
 
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :vote]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :vote, :hovercard]
 
   def index
     @search = Shop.ransack(params[:q])
@@ -29,6 +29,9 @@ class ShopsController < ApplicationController
         render turbo_stream: turbo_stream.replace(@shop, partial:"shops/shop", locals: {shop: @shop})
       end
     end
+  end
+
+  def hovercard
   end
 
   def new
@@ -66,7 +69,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :address, :description, :contact, benefit_ids: [], pt_ids: [], images: [])
+    params.require(:shop).permit(:name, :address, :description, :contact, :avatar, benefit_ids: [], pt_ids: [], price_ids: [], images: [])
   end
 
   def set_shop

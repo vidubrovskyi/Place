@@ -1,3 +1,6 @@
+<%# if user_signed_in? and current_user.workgroup == "admin" || current_user == shop.user %>
+<%# end %>
+
 <!--index-->
 
 <% @shops.each do |shop| %>
@@ -33,3 +36,171 @@
 <p><%= link_to "Back", shops_path %></p>
 <p><%= link_to "Edit", edit_shop_path(@shop) %></p>
 <p><%= link_to "Delete", shop_path(@shop), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %></p>
+
+
+
+<fieldset class="search-field">
+  <legend>Search Our Database</legend>
+  <%= search_form_for @search do |f| %>
+
+    <div class="field">
+      <%= f.label "Benefits" %><br />
+      <%= f.collection_check_boxes :benefits_id_in_any, Benefit.all, :id, :children do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Place type" %><br />
+      <%= f.collection_check_boxes :pts_id_in_any, Pt.all, :id, :pt do |b| %>
+        <div class="collection-check-box">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</fieldset>
+_________________
+<br>
+
+
+<%= link_to "Add new place", new_shop_path %>
+
+
+<div id="shops" class="min-w-full">
+  <%= render @shops %>
+</div>
+
+<div id="next_link">
+  <%= button_to "next", pagy_url_for(@pagy, @pagy.next) %>
+</div>
+
+
+
+<!---->
+
+<div id="<%= dom_id shop %>">
+
+  <section>
+    <div class="space-y-8 lg:divide-y lg:divide-gray-100">
+
+      <div class="pt-8 sm:flex lg:items-end group">
+        <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+          <% if shop.images.attached? %>
+            <% shop.images.each do |image| %>
+              <p><%= image_tag image, class: "w-full rounded-md h-32 lg:w-32 object-cover" %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <p class="mt-3 text-lg font-medium leading-6">
+            <%= link_to "#{shop.name}", shop, class: "text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl" %>
+          </p>
+          <p class="mt-2 text-lg text-gray-500">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+        </div>
+      </div>
+      <div class="pt-8 sm:flex lg:items-end group">
+        <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+          <img class="w-full rounded-md h-32 lg:w-32 object-cover" src="/assets/images/placeholders/neon-3.jpg" alt="text">
+        </div>
+        <div>
+          <span class="text-sm text-gray-500">August 20.20.21</span>
+          <p class="mt-3 text-lg font-medium leading-6">
+            <a href="./blog-post.html" class="text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl">Meet Now What? The essential new podcast for evolving designers </a>
+          </p>
+          <p class="mt-2 text-lg text-gray-500">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+        </div>
+      </div>
+      <div class="pt-8 sm:flex lg:items-end group">
+        <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+          <img class="w-full rounded-md h-32 lg:w-32 object-cover" src="/assets/images/placeholders/neon-5.jpg" alt="text">
+        </div>
+        <div>
+          <span class="text-sm text-gray-500">August 20.20.21</span>
+          <p class="mt-3 text-lg font-medium leading-6">
+            <a href="./blog-post.html" class="text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl">B2B Branding: 5 tips to go from boring to extraordinary </a>
+          </p>
+          <p class="mt-2 text-lg text-gray-500">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+        </div>
+      </div>
+      <div class="pt-8 sm:flex lg:items-end group">
+        <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
+          <img class="w-full rounded-md h-32 lg:w-32 object-cover" src="/assets/images/placeholders/neon-4.jpg" alt="text">
+        </div>
+        <div>
+          <span class="text-sm text-gray-500">August 20.20.21</span>
+          <p class="mt-3 text-lg font-medium leading-6">
+            <a href="./blog-post.html" class="text-xl text-gray-800 group-hover:text-gray-500 lg:text-2xl">Building a Career in Character Design: A chat with Sarah Beth Morgan </a>
+          </p>
+          <p class="mt-2 text-lg text-gray-500">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%#= shop.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= shop.address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= shop.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Contact:</strong>
+    <%= shop.contact %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Benefits:</strong>
+    <%= shop.benefits.map(&:children).sort.join(", ") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Place type:</strong>
+    <%= shop.pts.map(&:pt).sort.join(", ") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= shop.prices.map(&:price).sort.join(", ") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Images:</strong>
+    <%# if shop.images.attached? %>
+    <%# shop.images.each do |image| %>
+  <p><%#= image_tag image, width: "100px" %></p>
+  <%# end %>
+  <%# end %>
+  </p>
+
+  Upvotes: <%= shop.cached_votes_up %>
+  Downvotes: <%= shop.cached_votes_down %>
+  Score: <%= shop.cached_weighted_score %>
+  Total votes: <%= shop.cached_weighted_average %>
+
+  <%= button_to upvote_label(shop, current_user), vote_shop_path(shop, type: :upvote), method: :patch, style: upvote_label_styles(shop, current_user)%>
+  <%= button_to downvote_label(shop, current_user), vote_shop_path(shop, type: :downvote), method: :patch, style: downvote_label_styles(shop, current_user) %>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this place", shop, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this place', edit_shop_path(shop), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Delete", shop, data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

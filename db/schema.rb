@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_01_085223) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_03_093802) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,6 +50,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_085223) do
     t.integer "shop_id", null: false
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prices_shops", id: false, force: :cascade do |t|
+    t.integer "price_id", null: false
+    t.integer "shop_id", null: false
+  end
+
   create_table "pts", force: :cascade do |t|
     t.string "pt"
     t.datetime "created_at", null: false
@@ -86,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_085223) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.string "working"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
 

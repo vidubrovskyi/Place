@@ -1,42 +1,31 @@
-<fieldset class="search-field">
-  <legend>Search Our Database</legend>
-  <%= search_form_for @search do |f| %>
+<div class="flex overflow-hidden bg-white">
+  <%= render "shops/search" %>
+  <div class="flex flex-col flex-1 w-0 overflow-hidden">
+    <main class="relative flex-1 overflow-y-auto focus:outline-none">
+      <div class="py-6">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
 
-    <div class="field">
-      <%= f.label "Benefits" %><br />
-      <%= f.collection_check_boxes :benefits_id_in_any, Benefit.all, :id, :children do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box %>
-          <%= b.label %>
+          <div id="shops" class="min-w-full">
+            <%= render @shops %>
+          </div>
+
+          <div id="next_link" class="mt-3">
+            <%= button_to "next", pagy_url_for(@pagy, @pagy.next), class: "px-4 py-1 font-semibold border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+          </div>
+
         </div>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label "Place type" %><br />
-      <%= f.collection_check_boxes :pts_id_in_any, Pt.all, :id, :pt do |b| %>
-        <div class="collection-check-box">
-          <%= b.check_box %>
-          <%= b.label %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="actions"><%= f.submit "Search" %></div>
-  <% end %>
-</fieldset>
-_________________
-<br>
-
-
-<%= link_to "Add new place", new_shop_path %>
-
-
-<div id="shops" class="min-w-full">
-  <%= render @shops %>
+      </div>
+    </main>
+  </div>
 </div>
 
-<div id="next_link">
-  <%= button_to "next", pagy_url_for(@pagy, @pagy.next) %>
-</div>
+
+
+
+
+
+
+
+
+
 
