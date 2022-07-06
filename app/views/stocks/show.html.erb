@@ -1,0 +1,8 @@
+<%= @stock.title %>
+<%= @stock.body %>
+<% if @stock.avatar.attached? %>
+  <%= image_tag @stock.avatar, width: "200px" %>
+<% end %>
+<%= link_to "Назад", stocks_path %>
+<%= link_to "Редагувати", edit_stock_path(@stock) %>
+<%= link_to "Видалити", stock_path(@stock), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>

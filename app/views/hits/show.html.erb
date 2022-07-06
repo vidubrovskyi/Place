@@ -1,0 +1,9 @@
+<%= @hit.title %>
+<%= @hit.body %>
+<% if @hit.avatar.attached? %>
+  <%= image_tag @hit.avatar, width: "200px" %>
+<% end %>
+<%= link_to "Назад", hits_path %>
+<%= link_to "Редагувати", edit_hit_path(@hit) %>
+<%= link_to "Видалити", hit_path(@hit), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+

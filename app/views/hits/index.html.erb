@@ -1,0 +1,10 @@
+<%= link_to "add", new_hit_path %>
+
+<% @hits.each do |h| %>
+  <%= h.title %>
+  <%= h.body %>
+  <% if h.avatar.attached? %>
+    <%= image_tag h.avatar, width: "200px" %>
+  <% end %>
+  <%= link_to "Show", hit_path(h)%>
+<% end %>

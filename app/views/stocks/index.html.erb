@@ -1,0 +1,10 @@
+<%= link_to "Додати акцію", new_stock_path %>
+
+<% @stocks.each do |s| %>
+  <%= s.title %>
+  <%= s.body %>
+  <% if s.avatar.attached? %>
+    <%= image_tag s.avatar, width: "200px" %>
+  <% end %>
+  <%= link_to "Переглянути", stock_path(s) %>
+<% end %>

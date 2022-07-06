@@ -5,6 +5,8 @@ class Shop < ApplicationRecord
   has_and_belongs_to_many :benefits
   has_and_belongs_to_many :pts
   has_and_belongs_to_many :prices
+  has_and_belongs_to_many :hits
+  has_and_belongs_to_many :stocks
 
   has_many_attached :images
   has_one_attached :avatar

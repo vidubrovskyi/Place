@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_03_093802) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_06_172339) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +48,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_093802) do
   create_table "benefits_shops", id: false, force: :cascade do |t|
     t.integer "benefit_id", null: false
     t.integer "shop_id", null: false
+  end
+
+  create_table "hits", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hits_shops", id: false, force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "hit_id", null: false
   end
 
   create_table "prices", force: :cascade do |t|
@@ -99,6 +111,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_093802) do
     t.float "cached_weighted_average", default: 0.0
     t.string "working"
     t.index ["user_id"], name: "index_shops_on_user_id"
+  end
+
+  create_table "shops_stocks", id: false, force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "stock_id", null: false
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

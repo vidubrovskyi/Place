@@ -1,0 +1,30 @@
+<%= form_with model: smth do |s| %>
+
+  <div>
+    <%= s.label :title %>
+    <%= s.text_field :title %>
+  </div>
+
+  <div>
+    <%= s.label :body %>
+    <%= s.text_field :body %>
+  </div>
+
+  <div>
+    <%= s.label :avatar %>
+    <%= s.file_field :avatar %>
+  </div>
+
+  <div>
+    <%= s.label "Place" %><br />
+    <%= s.collection_check_boxes :shop_ids, Shop.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= s.submit "Відправити" %>
+
+<% end %>
