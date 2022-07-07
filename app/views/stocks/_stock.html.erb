@@ -1,0 +1,25 @@
+<div id="<%= dom_id stock %>">
+  <% if @stocks %>
+    <%= stock.title %>
+    <%= stock.body %>
+    <% if stock.avatar.attached? %>
+      <%= image_tag stock.avatar, width: "200px" %>
+    <% end %>
+    <%= link_to "Show", stock_path(stock)%>
+  <% else %>
+
+    <div class="flex items-center -mx-4 space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:text-gray-100">
+      <%= link_to "Back", stocks_path, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
+      <% if user_signed_in? and current_user.workgroup == "admin" %>
+        <%= link_to "Edit", edit_stock_path(stock), class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
+        <%= link_to "Delete", stock_path(stock), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-red-400 hover:dark:text-red-400" %>
+      <% end %>
+    </div>
+
+    <%= stock.title %>
+    <%= stock.body %>
+    <% if stock.avatar.attached? %>
+      <%= image_tag stock.avatar, width: "200px" %>
+    <% end %>
+  <% end %>
+</div>

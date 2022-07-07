@@ -1,10 +1,23 @@
-<%= link_to "add", new_hit_path %>
+<div class="flex overflow-hidden bg-white w-5/6">
+  <%= render "stocks/search" %>
+  <div class="flex flex-col flex-1 w-0 overflow-hidden">
+    <main class="relative flex-1 overflow-y-auto focus:outline-none">
+      <div class="py-6">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8 grid justify-center grid-cols-2 gap-6">
 
-<% @hits.each do |h| %>
-  <%= h.title %>
-  <%= h.body %>
-  <% if h.avatar.attached? %>
-    <%= image_tag h.avatar, width: "200px" %>
-  <% end %>
-  <%= link_to "Show", hit_path(h)%>
-<% end %>
+          <div id="hits" class="min-w-full">
+            <%= render @hits %>
+          </div>
+
+          <div id="next_link" class="mt-3">
+          </div>
+
+          <div class="flex justify-center">
+            <button type="button" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-900 dark:text-gray-400">Load more posts...</button>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

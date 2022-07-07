@@ -1,0 +1,40 @@
+
+  <% if @hits %>
+    <section class="dark:text-gray-800">
+      <div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
+        <div class="grid justify-center grid-cols-2 gap-6">
+          <div id="<%= dom_id hit %>">
+          <%= link_to(hit, class: "max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-100") do %>
+            <% if hit.avatar.attached? %>
+              <%= image_tag hit.avatar, class: "object-cover w-full rounded h-44 dark:bg-gray-500" %>
+            <% end %>
+            <div class="p-6 space-y-2">
+              <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline"><%= hit.title %></h3>
+              <span class="text-xs dark:text-gray-400"><%= hit.created_at.strftime("%B %d, %Y") %></span>
+              <p><%= hit.body %></p>
+            </div>
+          <% end %>
+        </div>
+        </div>
+      </div>
+    </section>
+  <% else %>
+    <div id="<%= dom_id hit %>">
+    <div class="flex items-center -mx-4 space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:text-gray-100">
+      <%= link_to "Back", hits_path, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
+      <% if user_signed_in? and current_user.workgroup == "admin" %>
+        <%= link_to "Edit", edit_hit_path(hit), class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
+        <%= link_to "Delete", hit_path(hit), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-red-400 hover:dark:text-red-400" %>
+      <% end %>
+    </div>
+
+    <%= hit.title %>
+    <%= hit.body %>
+    <% if hit.avatar.attached? %>
+      <%= image_tag hit.avatar, width: "200px" %>
+    <% end %>
+    </div>
+  <% end %>
+
+
+

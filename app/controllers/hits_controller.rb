@@ -18,7 +18,8 @@ class HitsController < ApplicationController
   end
 
   def index
-    @hits = Hit.all
+    @search = Hit.ransack(params[:q])
+    @hits = @search.result(distinct: true)
   end
 
   def edit

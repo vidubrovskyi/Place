@@ -18,7 +18,8 @@ class StocksController < ApplicationController
   end
 
   def index
-    @stocks = Stock.all
+    @search = Stock.ransack(params[:q])
+    @stocks = @search.result(distinct: true)
   end
 
   def edit

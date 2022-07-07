@@ -50,6 +50,11 @@
                 <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                   <%= link_to "Your Profile", root_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                   <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700" %>
+                  <% if user_signed_in? and current_user.workgroup == "admin" %>
+                    <%= link_to "Додати акцію", new_stock_path, class: "block px-4 py-2 text-sm text-gray-700" %>
+                    <%= link_to "Додати новину", new_hit_path, class: "block px-4 py-2 text-sm text-gray-700" %>
+                    <%= link_to "Додати заклад", new_shop_path, class: "block px-4 py-2 text-sm text-gray-700" %>
+                  <% end %>
                   <div class="border-b"></div>
                   <%= link_to "Sign out", destroy_user_session_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                 </div>

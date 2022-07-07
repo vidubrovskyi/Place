@@ -2,11 +2,6 @@
   <div class="flex flex-col w-64">
     <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white border-r border-gray-50">
 
-      <% if user_signed_in? and current_user.workgroup == "admin" %>
-        <div class="flex flex-col items-center flex-shrink-0 px-4">
-          <%= link_to "Нове місце", new_shop_path, class: "px-8 text-left focus:outline-none block p-2 text-xl font-medium tracking-tighter text-gray-900 transition duration-500 ease-in-out transform cursor-pointer hover:text-violet-400" %>
-        </div>
-      <% end %>
       <fieldset class="search-field">
         <div class="flex flex-col items-center flex-shrink-0 px-4">
           <legend class=" px-8 text-left focus:outline-none block p-2 text-xl font-medium tracking-tighter text-gray-900 transition duration-500 ease-in-out transform hover:text-gray-900">Пошук</legend>

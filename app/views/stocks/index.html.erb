@@ -1,10 +1,19 @@
-<%= link_to "Додати акцію", new_stock_path %>
+<div class="flex overflow-hidden bg-white w-5/6">
+  <%= render "stocks/search" %>
+  <div class="flex flex-col flex-1 w-0 overflow-hidden">
+    <main class="relative flex-1 overflow-y-auto focus:outline-none">
+      <div class="py-6">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
 
-<% @stocks.each do |s| %>
-  <%= s.title %>
-  <%= s.body %>
-  <% if s.avatar.attached? %>
-    <%= image_tag s.avatar, width: "200px" %>
-  <% end %>
-  <%= link_to "Переглянути", stock_path(s) %>
-<% end %>
+          <div id="stocks" class="min-w-full">
+            <%= render @stocks %>
+          </div>
+
+          <div id="next_link" class="mt-3">
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
