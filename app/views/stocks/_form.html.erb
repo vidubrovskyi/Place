@@ -1,30 +1,45 @@
-<%= form_with model: smth do |s| %>
-
-  <div>
-    <%= s.label :title %>
-    <%= s.text_field :title %>
-  </div>
-
-  <div>
-    <%= s.label :body %>
-    <%= s.text_field :body %>
-  </div>
-
-  <div>
-    <%= s.label :avatar %>
-    <%= s.file_field :avatar %>
-  </div>
-
-  <div>
-    <%= s.label "Place" %><br />
-    <%= s.collection_check_boxes :shop_ids, Shop.all, :id, :name do |b| %>
-      <div class="collection-check-box">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
-  </div>
-
-  <%= s.submit "Відправити" %>
-
-<% end %>
+<section class="p-6 dark:text-gray-800">
+  <%= form_with model: smth do |s|%>
+    <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+      <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+        <div class="space-y-2 col-span-full lg:col-span-1">
+          <% if @hit %>
+            <p class="font-medium">Новина</p>
+            <p class="text-xs">Додайте новину</p>
+          <% else %>
+            <p class="font-medium">Акція</p>
+            <p class="text-xs">Додайте акцію</p>
+          <% end %>
+        </div>
+          <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+          <div class="col-span-full sm:col-span-3">
+            <%= s.label "Заголовок"%>
+            <%= s.text_field :title, class: "w-full rounded-md dark:text-gray-900", placeholder: "Заголовок" %>
+          </div>
+          <div class="col-span-full">
+            <%= s.label "Контент"%>
+            <%= s.text_area :body, class: "w-full rounded-md dark:text-gray-900" %>
+          </div>
+          <div class="col-span-full">
+            <%= s.label "Заклад"%><br />
+            <%= s.collection_check_boxes :shop_ids, Shop.all, :id, :name do |b| %>
+              <div class="collection-check-box">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-span-full">
+            <%= s.label "Зображення"%>
+            <div class="flex items-center space-x-2">
+              <%= s.file_field :avatar %>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <%= s.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  <% end %>
+</section>
