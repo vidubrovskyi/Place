@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   resources :prices
 
   resources :stocks
-  resources :hits
+  resources :hits do
+    collection do
+      post :index
+    end
+  end
 
 end

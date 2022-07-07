@@ -1,25 +1,18 @@
-
+<div id="<%= dom_id hit %>">
   <% if @hits %>
     <section class="dark:text-gray-800">
-      <div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-        <div class="grid justify-center grid-cols-2 gap-6">
-          <div id="<%= dom_id hit %>">
-          <%= link_to(hit, class: "max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-100") do %>
-            <% if hit.avatar.attached? %>
-              <%= image_tag hit.avatar, class: "object-cover w-full rounded h-44 dark:bg-gray-500" %>
-            <% end %>
-            <div class="p-6 space-y-2">
-              <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline"><%= hit.title %></h3>
-              <span class="text-xs dark:text-gray-400"><%= hit.created_at.strftime("%B %d, %Y") %></span>
-              <p><%= hit.body %></p>
-            </div>
-          <% end %>
+      <%= link_to(hit, class: "max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-100") do %>
+        <% if hit.avatar.attached? %>
+          <%= image_tag hit.avatar, class: "object-cover w-full rounded h-44 dark:bg-gray-500" %>
+        <% end %>
+        <div class="space-y-2 items-text">
+          <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline"><%= hit.title %></h3>
+          <span class="text-xs dark:text-gray-400"><%= hit.created_at.strftime("%B %d, %Y") %></span>
+          <p style="word-wrap: break-word"><%= hit.body %></p>
         </div>
-        </div>
-      </div>
+      <% end %>
     </section>
   <% else %>
-    <div id="<%= dom_id hit %>">
     <div class="flex items-center -mx-4 space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:text-gray-100">
       <%= link_to "Back", hits_path, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
       <% if user_signed_in? and current_user.workgroup == "admin" %>
@@ -28,13 +21,22 @@
       <% end %>
     </div>
 
-    <%= hit.title %>
-    <%= hit.body %>
-    <% if hit.avatar.attached? %>
-      <%= image_tag hit.avatar, width: "200px" %>
-    <% end %>
-    </div>
+    <article class="px-4 pt-6 pb-12 mx-auto max-w-7xl">
+      <div class="w-full mx-auto mb-10 text-left md:w-3/4 lg:w-1/2">
+        <div class="pb-6 mb-6 border-b border-gray-200">
+          <h1 class="mb-3 text-3xl font-bold text-gray-900 md:leading-tight md:text-4xl" itemprop="headline">
+            <%= hit.title %>
+          </h1>
+          <p class="text-base text-gray-500"><%= hit.created_at.strftime("%B %d, %Y") %></p>
+        </div>
+        <% if hit.avatar.attached? %>
+          <%= image_tag hit.avatar, class: "object-cover w-full h-64 bg-center rounded" %>
+        <% end %>
+      </div>
+      <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
+        <%= hit.body %>
+      </div>
+    </article>
   <% end %>
-
-
+</div>
 

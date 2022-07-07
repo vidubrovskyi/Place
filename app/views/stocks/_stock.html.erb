@@ -1,13 +1,18 @@
 <div id="<%= dom_id stock %>">
   <% if @stocks %>
-    <%= stock.title %>
-    <%= stock.body %>
-    <% if stock.avatar.attached? %>
-      <%= image_tag stock.avatar, width: "200px" %>
-    <% end %>
-    <%= link_to "Show", stock_path(stock)%>
+    <section class="dark:text-gray-800">
+      <%= link_to(stock, class: "max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-100") do %>
+        <% if stock.avatar.attached? %>
+          <%= image_tag stock.avatar, class: "object-cover w-full rounded h-44 dark:bg-gray-500" %>
+        <% end %>
+        <div class="space-y-2 items-text">
+          <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline"><%= stock.title %></h3>
+          <span class="text-xs dark:text-gray-400"><%= stock.created_at.strftime("%B %d, %Y") %></span>
+          <p style="word-wrap: break-word"><%= stock.body %></p>
+        </div>
+      <% end %>
+    </section>
   <% else %>
-
     <div class="flex items-center -mx-4 space-x-2 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:text-gray-100">
       <%= link_to "Back", stocks_path, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-violet-400 hover:dark:text-violet-400" %>
       <% if user_signed_in? and current_user.workgroup == "admin" %>
@@ -16,10 +21,21 @@
       <% end %>
     </div>
 
-    <%= stock.title %>
-    <%= stock.body %>
-    <% if stock.avatar.attached? %>
-      <%= image_tag stock.avatar, width: "200px" %>
-    <% end %>
+    <article class="px-4 pt-6 pb-12 mx-auto max-w-7xl">
+      <div class="w-full mx-auto mb-10 text-left md:w-3/4 lg:w-1/2">
+        <div class="pb-6 mb-6 border-b border-gray-200">
+          <h1 class="mb-3 text-3xl font-bold text-gray-900 md:leading-tight md:text-4xl" itemprop="headline">
+            <%= stock.title %>
+          </h1>
+          <p class="text-base text-gray-500"><%= stock.created_at.strftime("%B %d, %Y") %></p>
+        </div>
+        <% if stock.avatar.attached? %>
+          <%= image_tag stock.avatar, class: "object-cover w-full h-64 bg-center rounded" %>
+        <% end %>
+      </div>
+      <div class="w-full mx-auto prose md:w-3/4 lg:w-1/2">
+        <%= stock.body %>
+      </div>
+    </article>
   <% end %>
 </div>
