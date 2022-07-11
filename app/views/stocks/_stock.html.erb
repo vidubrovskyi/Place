@@ -5,7 +5,7 @@
         <% if stock.avatar.attached? %>
           <%= image_tag stock.avatar, class: "object-cover w-full rounded h-44 dark:bg-gray-500" %>
         <% end %>
-        <div class="space-y-2 items-text">
+        <div class="space-y-2 items-text bg-gray-100 px-2">
           <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline"><%= stock.title %></h3>
           <span class="text-xs dark:text-gray-400"><%= stock.created_at.strftime("%B %d, %Y") %></span>
           <p style="word-wrap: break-word"><%= stock.body %></p>

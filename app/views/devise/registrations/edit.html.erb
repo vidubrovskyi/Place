@@ -1,63 +1,69 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="p-6 dark:text-gray-800">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+      <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="space-y-2 col-span-full lg:col-span-1">
+          <p class="font-medium">Профіль</p>
+          <p class="text-xs">Налаштування профілю</p>
+        </div>
+        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Пошта" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-md dark:text-gray-800", placeholder: " Почта" %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Телефон" %><br />
+            <%= f.text_field :phone, class: "w-full rounded-md dark:text-gray-800", placeholder: " +38(063)111-11-11" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Ім'я" %><br />
+            <%= f.text_field :name, class: "w-full rounded-md dark:text-gray-800", placeholder: " Ім'я"%>
+          </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name%>
-  </div>
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Фамілія" %><br />
+            <%= f.text_field :last_name, class: "w-full rounded-md dark:text-gray-800", placeholder: " Фамілія" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
+          <div class="col-span-full">
+            <%= f.label "Зображення" %>
+            <div class="flex items-center space-x-2">
+              <%= f.file_field :avatar %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Пароль" %> <i class="text-xs">(залиште порожнім, якщо ви не хочете його змінювати)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "w-full rounded-md dark:text-gray-800" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em class="text-xs"><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Підтвердження паролю" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded-md dark:text-gray-800" %>
+          </div>
+
+          <div class="col-span-full sm:col-span-3">
+            <%= f.label "Поточний пароль" %> <i class="text-xs">(нам потрібен Ваш поточний пароль, щоб підтвердити ваші зміни)</i><br />
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full rounded-md dark:text-gray-800" %>
+          </div>
+
+          <div class="col-span-full">
+            <%= f.submit "Оновити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</section>
