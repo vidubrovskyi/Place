@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/edit'
+  get 'contacts/show'
+  get 'contacts/index'
 
   devise_for :users, controllers: {registrations: "users/registrations",
                                    sessions: "users/sessions"}
