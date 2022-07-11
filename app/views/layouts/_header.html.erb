@@ -36,8 +36,8 @@
                     <img class="inline h-10 w-10 rounded-full" src="https://st2.depositphotos.com/47577860/46283/v/450/depositphotos_462836132-stock-illustration-assassin-deadpool-face-icon.jpg" alt="">
                   <% end %>
               <% else %>
-                <%= link_to "Sign in", new_user_session_path, class: "self-center px-8 py-3 rounded hover:font-semibold hover:dark:bg-violet-400 hover:dark:text-gray-900" %>
-                <%= link_to "Sign up", new_user_registration_path, class: "self-center px-8 py-3 rounded hover:font-semibold hover:dark:bg-violet-400 hover:dark:text-gray-900" %>
+                <%= link_to "Увійти", new_user_session_path, class: "self-center px-8 py-3 rounded hover:font-semibold hover:dark:bg-violet-400 hover:dark:text-gray-900" %>
+                <%= link_to "Зареєструватися", new_user_registration_path, class: "self-center px-8 py-3 rounded hover:font-semibold hover:dark:bg-violet-400 hover:dark:text-gray-900" %>
               <% end %>
               </button>
               <div x-show="open" x-transition:enter="transition ease-out duration-100"
@@ -48,7 +48,6 @@
                    x-transition:leave-end="transform opacity-0 scale-95"
                    class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
                 <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                  <%= link_to "Your Profile", root_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                   <%= link_to "Налаштування профілю", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                   <% if user_signed_in? and current_user.workgroup == "admin" %>
                     <div class="border-b"></div>
@@ -58,7 +57,7 @@
                     <%= link_to "Переглянути заявки", contacts_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                   <% end %>
                   <div class="border-b"></div>
-                  <%= link_to "Sign out", destroy_user_session_path, class: "block px-4 py-2 text-sm text-gray-700" %>
+                  <%= link_to "Вийти", destroy_user_session_path, class: "block px-4 py-2 text-sm text-gray-700" %>
                 </div>
               </div>
             </div>

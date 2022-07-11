@@ -1,8 +1,21 @@
-<%= form_with(model: [@shop, @review], local: true) do |review| %>
-  <div>
-    <%= review.label :message %>
-    <%= review.text_field :message, required: true %>
-  </div>
-
-  <%= review.submit "Submit" %>
-<% end %>
+<section class="p-6 dark:text-gray-800">
+  <%= form_with(model: [@shop, @review], local: true) do |review| %>
+    <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+      <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+        <div class="space-y-2 col-span-full lg:col-span-1">
+          <p class="font-medium">Відгук</p>
+          <p class="text-xs">Редагувати відгук</p>
+        </div>
+        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+          <div class="col-span-full">
+            <%= review.label "Контент"%>
+            <%= review.text_area :message, class: "w-full rounded-md dark:text-gray-800", placeholder: " Контент" %>
+          </div>
+          <div class="col-span-full">
+            <%= review.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  <% end %>
+</section>

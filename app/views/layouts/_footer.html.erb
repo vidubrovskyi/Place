@@ -1,10 +1,9 @@
 <footer class="dark:bg-gray-800 dark:text-gray-50">
   <div class="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row divide-gray-400">
     <ul class="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
-      <li>Shop</li>
-      <li>About</li>
-      <li>Blog</li>
-      <li>Pricing</li>
+      <li><%= link_to "Заклади", shops_path %></li>
+      <li><%= link_to "Новини", hits_path %></li>
+      <li><%= link_to "Акції", stocks_path %></li>
       <li><%= link_to "Контакти", new_contact_path %></li>
     </ul>
     <div class="flex flex-col justify-center pt-6 lg:pt-0">
@@ -34,7 +33,6 @@
             <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
           </svg>
         </a>
-        <%= Time.zone.now %>
       </div>
     </div>
   </div>
