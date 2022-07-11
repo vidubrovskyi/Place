@@ -1,7 +1,5 @@
 class ContactsController < ApplicationController
 
-  before_action :set_contact, only: %i[show destroy]
-
   def index
     @contacts = Contact.all
   end
@@ -20,10 +18,8 @@ class ContactsController < ApplicationController
 
   end
 
-  def show
-  end
-
   def destroy
+    @contact = Contact.find(params[:id])
     @contact.destroy
     redirect_to contacts_path, status: :see_other
   end
@@ -32,9 +28,5 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:contact, :email, :body)
-  end
-
-  def set_contact
-    @contact = find(params[:id])
   end
 end

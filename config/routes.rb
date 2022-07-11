@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'contacts/new'
-  get 'contacts/edit'
-  get 'contacts/show'
-  get 'contacts/index'
 
   devise_for :users, controllers: {registrations: "users/registrations",
                                    sessions: "users/sessions"}
@@ -30,7 +26,9 @@ Rails.application.routes.draw do
   resources :hits do
     collection do
       post :index
+      post :create_hit, to: "hits#create"
     end
   end
+  resources :contacts
 
 end

@@ -10,9 +10,10 @@ class HitsController < ApplicationController
     if @hit.save
       redirect_to hit_path(@hit)
     else
-      render :new
+      redirect_to root_path
     end
   end
+
 
   def show
   end
