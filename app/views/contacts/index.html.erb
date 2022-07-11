@@ -1,6 +1,32 @@
-<% @contacts.each do |c| %>
-  <%= c.contact %>
-  <%= c.email %>
-  <%= c.body %>
-  <%= link_to "Delete", contact_path(c), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-800 dark:text-gray-800 hover:dark:border-red-400 hover:dark:text-red-400" %>
-<% end %>
+<div class="container p-2 mx-auto sm:p-4 dark:text-gray-800 ">
+  <div class="overflow-x-auto">
+    <table class="text mx-auto lg:px-8 p-4">
+      <thead class="dark:bg-gray-200">
+      <tr class="text-center">
+        <th class="p-3">Пошта</th>
+        <th class="p-3">Телефон</th>
+        <th class="p-3">Повідомлення</th>
+        <th class="p-3">Дія</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @contacts.each do |c| %>
+      <tr class="border-b dark:border-gray-200 dark:bg-gray-100">
+        <td class="p-3">
+          <p><%= c.email %></p>
+        </td>
+        <td class="p-3">
+          <p><%= c.contact %></p>
+        </td>
+        <td class="p-3">
+          <%= c.body %>
+        </td>
+        <td class="p-3">
+          <%= link_to "Видалити", contact_path(c), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }, class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

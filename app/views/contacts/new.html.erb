@@ -1,15 +1,25 @@
-<%= form_with model: @contact do |c| %>
-  <div>
-    <%= c.label :contact %>
-    <%= c.text_field :contact %>
+<section class="py-6 dark:text-gray-800">
+  <div class="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 dark:bg-gray-100 p-4 rounded-md">
+    <div class="md:py-0 md:px-6">
+      <h1 class="text-4xl font-bold">Зв'язок</h1>
+      <p class="pt-2 pb-4">Для добавлення нового закладу, согласування рекламної компанії чи інших питань заповніть представленну форму</p>
+    </div>
+    <%= form_with model: @contact do |c| %>
+      <form novalidate="" class="flex flex-col py-6 space-y-6 px-8">
+        <label class="block">
+          <%= c.label "Телефон" %>
+          <%= c.text_field :contact, class: "block w-full rounded-md", placeholder: " +38(063)111-11-11"  %>
+        </label>
+        <label class="block pt-4">
+          <%= c.label "Пошта" %>
+          <%= c.text_field :email, class: "block w-full rounded-md", placeholder: " email@gmail.com"  %>
+        </label>
+        <label class="block py-4">
+          <%= c.label "Повідомлення" %>
+          <%= c.text_area :body, class: "block w-full rounded-md", placeholder: " Повідомлення"  %>
+        </label>
+        <%= c.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
+      </form>
+    <% end %>
   </div>
-  <div>
-    <%= c.label :email %>
-    <%= c.text_field :email %>
-  </div>
-  <div>
-    <%= c.label :body %>
-    <%= c.text_field :body %>
-  </div>
-  <%= c.submit "Submit" %>
-<% end %>
+</section>
