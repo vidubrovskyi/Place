@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     collection do
       post :index
+      post :create_shop, to: "shops#create", as: :create
     end
 
     member do
@@ -22,11 +23,16 @@ Rails.application.routes.draw do
   resources :pts
   resources :prices
 
-  resources :stocks
+  resources :stocks do
+    collection do
+      post :index
+      post :create_stock, to: "stocks#create", as: :create
+    end
+  end
   resources :hits do
     collection do
       post :index
-      post :create_hit, to: "hits#create"
+      post :create_hit, to: "hits#create", as: :create
     end
   end
   resources :contacts

@@ -4,7 +4,7 @@ class ShopsController < ApplicationController
 
   def index
     @search = Shop.ransack(params[:q])
-    @pagy, @shops = pagy_countless(@search.result(distinct: true), items: 2)
+    @pagy, @shops = pagy_countless(@search.result(distinct: true), items: 5)
     respond_to do |format|
       format.html
       format.turbo_stream

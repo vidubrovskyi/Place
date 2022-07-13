@@ -19,7 +19,12 @@ class StocksController < ApplicationController
 
   def index
     @search = Stock.ransack(params[:q])
-    @stocks = @search.result(distinct: true)
+    @pagy, @stocks = pagy_countless(@search.result(distinct: true), items: 4)
+
+    respond_to do |format|
+      format.html # GET
+      format.turbo_stream # POST
+    end
   end
 
   def edit

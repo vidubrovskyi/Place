@@ -1,13 +1,13 @@
 <% if action_name == "new" %>
   <section class="p-6 dark:text-gray-800">
-    <%= form_with(url: create_stocks_path, model: smth) do |s|%>
+    <%= form_with(url: create_hits_path, model: smth) do |s|%>
       <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
         <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
           <div class="space-y-2 col-span-full lg:col-span-1">
-            <p class="font-medium">Акція</p>
-            <p class="text-xs">Додайте якцію</p>
+            <p class="font-medium">Новина</p>
+            <p class="text-xs">Додайте новину</p>
           </div>
-            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+          <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
             <div class="col-span-full sm:col-span-3">
               <%= s.label "Заголовок"%>
               <%= s.text_field :title, class: "w-full rounded-md dark:text-gray-800", placeholder: " Заголовок" %>
@@ -45,8 +45,8 @@
       <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
         <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
           <div class="space-y-2 col-span-full lg:col-span-1">
-            <p class="font-medium">Акція</p>
-            <p class="text-xs">Редагуйте акцію</p>
+            <p class="font-medium">Новина</p>
+            <p class="text-xs">Редагуйте новину</p>
           </div>
           <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
             <div class="col-span-full sm:col-span-3">

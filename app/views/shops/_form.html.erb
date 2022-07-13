@@ -1,76 +1,155 @@
-<section class="p-6 dark:text-gray-800">
-  <%= form_with model: @shop do |shop| %>
-    <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-      <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
-        <div class="space-y-2 col-span-full lg:col-span-1">
-          <p class="font-medium">Заклад</p>
-          <p class="text-xs">Додати заклад</p>
-        </div>
-        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Назва" %>
-            <%= shop.text_field :name, required: true, class: "w-full rounded-md dark:text-gray-800", placeholder: " Назва" %>
+<% if action_name == "new" %>
+  <section class="p-6 dark:text-gray-800">
+    <%= form_with(url: create_shops_path, model: @shop) do |shop|%>
+      <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+        <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+          <div class="space-y-2 col-span-full lg:col-span-1">
+            <p class="font-medium">Заклад</p>
+            <p class="text-xs">Додати заклад</p>
           </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Адреса" %>
-            <%= shop.text_field :address, class: "w-full rounded-md dark:text-gray-800", placeholder: " Адреса" %>
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Контакт" %>
-            <%= shop.text_field :contact, class: "w-full rounded-md dark:text-gray-800", placeholder: " +38(063)111-11-11" %>
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Графік роботи" %>
-            <%= shop.text_field :working, class: "w-full rounded-md dark:text-gray-800", placeholder: " 10:00-22:00" %>
-          </div>
-          <div class="col-span-full">
-            <%= shop.label "Опис" %>
-            <%= shop.text_area :description, class: "w-full rounded-md dark:text-gray-800", placeholder: " Опис" %>
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Тип закладу" %><br />
-            <%= shop.collection_check_boxes :pt_ids, Pt.all, :id, :pt do |b| %>
-              <div class="collection-check-box">
-                <%= b.check_box %>
-                <%= b.label %>
+          <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Назва" %>
+              <%= shop.text_field :name, required: true, class: "w-full rounded-md dark:text-gray-800", placeholder: " Назва" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Адреса" %>
+              <%= shop.text_field :address, class: "w-full rounded-md dark:text-gray-800", placeholder: " Адреса" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Контакт" %>
+              <%= shop.text_field :contact, class: "w-full rounded-md dark:text-gray-800", placeholder: " +38(063)111-11-11" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Графік роботи" %>
+              <%= shop.text_field :working, class: "w-full rounded-md dark:text-gray-800", placeholder: " 10:00-22:00" %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Опис" %>
+              <%= shop.text_area :description, class: "w-full rounded-md dark:text-gray-800", placeholder: " Опис" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Тип закладу" %><br />
+              <%= shop.collection_check_boxes :pt_ids, Pt.all, :id, :pt do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Особливості" %><br />
+              <%= shop.collection_check_boxes :benefit_ids, Benefit.all, :id, :children do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Ціна" %><br />
+              <%= shop.collection_check_boxes :price_ids, Price.all, :id, :price do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Головне зображення"%>
+              <div class="flex items-center space-x-2">
+                <%= shop.file_field :avatar %>
               </div>
-            <% end %>
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Особливості" %><br />
-            <%= shop.collection_check_boxes :benefit_ids, Benefit.all, :id, :children do |b| %>
-              <div class="collection-check-box">
-                <%= b.check_box %>
-                <%= b.label %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Зображення"%>
+              <div class="flex items-center space-x-2">
+                <%= shop.file_field :images, multiple: true %>
               </div>
-            <% end %>
-          </div>
-          <div class="col-span-full sm:col-span-3">
-            <%= shop.label "Ціна" %><br />
-            <%= shop.collection_check_boxes :price_ids, Price.all, :id, :price do |b| %>
-              <div class="collection-check-box">
-                <%= b.check_box %>
-                <%= b.label %>
-              </div>
-            <% end %>
-          </div>
-          <div class="col-span-full">
-            <%= shop.label "Головне зображення"%>
-            <div class="flex items-center space-x-2">
-              <%= shop.file_field :avatar %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
             </div>
           </div>
-          <div class="col-span-full">
-            <%= shop.label "Зображення"%>
-            <div class="flex items-center space-x-2">
-              <%= shop.file_field :images, multiple: true %>
+        </fieldset>
+      </form>
+    <% end %>
+  </section>
+<% else %>
+  <section class="p-6 dark:text-gray-800">
+    <%= form_with model: @shop do |shop|%>
+      <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+        <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+          <div class="space-y-2 col-span-full lg:col-span-1">
+            <p class="font-medium">Заклад</p>
+            <p class="text-xs">Редагувати заклад</p>
+          </div>
+          <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Назва" %>
+              <%= shop.text_field :name, required: true, class: "w-full rounded-md dark:text-gray-800", placeholder: " Назва" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Адреса" %>
+              <%= shop.text_field :address, class: "w-full rounded-md dark:text-gray-800", placeholder: " Адреса" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Контакт" %>
+              <%= shop.text_field :contact, class: "w-full rounded-md dark:text-gray-800", placeholder: " +38(063)111-11-11" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Графік роботи" %>
+              <%= shop.text_field :working, class: "w-full rounded-md dark:text-gray-800", placeholder: " 10:00-22:00" %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Опис" %>
+              <%= shop.text_area :description, class: "w-full rounded-md dark:text-gray-800", placeholder: " Опис" %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Тип закладу" %><br />
+              <%= shop.collection_check_boxes :pt_ids, Pt.all, :id, :pt do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Особливості" %><br />
+              <%= shop.collection_check_boxes :benefit_ids, Benefit.all, :id, :children do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full sm:col-span-3">
+              <%= shop.label "Ціна" %><br />
+              <%= shop.collection_check_boxes :price_ids, Price.all, :id, :price do |b| %>
+                <div class="collection-check-box">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Головне зображення"%>
+              <div class="flex items-center space-x-2">
+                <%= shop.file_field :avatar %>
+              </div>
+            </div>
+            <div class="col-span-full">
+              <%= shop.label "Зображення"%>
+              <div class="flex items-center space-x-2">
+                <%= shop.file_field :images, multiple: true %>
+              </div>
+            </div>
+            <div class="col-span-full">
+              <%= shop.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
             </div>
           </div>
-          <div class="col-span-full">
-            <%= shop.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  <% end %>
-</section>
+        </fieldset>
+      </form>
+    <% end %>
+  </section>
+<% end %>
