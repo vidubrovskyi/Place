@@ -1,25 +1,20 @@
 class PtsController < ApplicationController
   before_action :set_pt, only: %i[ show edit update destroy ]
 
-  # GET /pts or /pts.json
   def index
     @pts = Pt.all
   end
 
-  # GET /pts/1 or /pts/1.json
   def show
   end
 
-  # GET /pts/new
   def new
     @pt = Pt.new
   end
 
-  # GET /pts/1/edit
   def edit
   end
 
-  # POST /pts or /pts.json
   def create
     @pt = Pt.new(pt_params)
 
@@ -34,7 +29,6 @@ class PtsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pts/1 or /pts/1.json
   def update
     respond_to do |format|
       if @pt.update(pt_params)
@@ -47,7 +41,6 @@ class PtsController < ApplicationController
     end
   end
 
-  # DELETE /pts/1 or /pts/1.json
   def destroy
     @pt.destroy
 
@@ -58,12 +51,11 @@ class PtsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_pt
       @pt = Pt.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def pt_params
       params.require(:pt).permit(:pt)
     end

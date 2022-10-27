@@ -4,5 +4,4 @@ class Price < ApplicationRecord
 
   validates :price, presence: true, length: {maximum: 50}
 
-
 end

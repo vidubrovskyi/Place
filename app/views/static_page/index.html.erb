@@ -8,30 +8,30 @@
     </div>
     <div class="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
       <% c = 0 %>
-      <% @shops.each do |s| %>
+      <% @shops.each do |shop| %>
         <% break if c == 4 %>
-        <%= link_to (s) do %>
+        <%= link_to (shop) do %>
           <article class="flex flex-col dark:bg-gray-100">
-            <% if s.avatar.attached? %>
-              <%= image_tag s.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
+            <% if shop.avatar.attached? %>
+              <%= image_tag shop.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
             <% end %>
             <div class="flex flex-col flex-1 p-2">
               <div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-400">
                 <div>
-                  <p class="text-xs tracking-wider uppercase dark:text-violet-400"><%= s.name %></p>
+                  <p class="text-xs tracking-wider uppercase dark:text-violet-400"><%= shop.name %></p>
                 </div>
                 <div>
-                    <span class="text-green-500">Likes: <%= s.cached_votes_up %></span>
-                    <span class="text-red-500">Dislikes: <%= s.cached_votes_down %></span>
+                  <span class="text-green-500">Likes: <%= shop.cached_votes_up %></span>
+                  <span class="text-red-500">Dislikes: <%= shop.cached_votes_down %></span>
                 </div>
               </div>
               <div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-400">
-                <p><%= s.pts.map(&:pt).sort.join(", ") %></p>
-                <p><%= s.working %></p>
+                <p><%= shop.pts.map(&:pt).sort.join(", ") %></p>
+                <p><%= shop.working %></p>
               </div>
               <div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-400">
-                <span><%= s.address %></span>
-                <span><%= s.contact %></span>
+                <span><%= shop.address %></span>
+                <span><%= shop.contact %></span>
               </div>
             </div>
             <% c += 1 %>
@@ -53,15 +53,15 @@
     </div>
     <div class="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
       <% c = 0 %>
-      <% @stocks.each do |s| %>
+      <% @stocks.each do |stock| %>
         <% break if c == 4 %>
-        <%= link_to (s) do %>
+        <%= link_to (stock) do %>
           <article class="flex flex-col dark:bg-gray-100">
-            <% if s.avatar.attached? %>
-              <%= image_tag s.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
+            <% if stocks.avatar.attached? %>
+              <%= image_tag stock.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
             <% end %>
             <div class="flex flex-col flex-1 p-2">
-              <h3 class="flex-1 py-2 text-lg font-semibold leading-snug"><%= s.title %></h3>
+              <h3 class="flex-1 py-2 text-lg font-semibold leading-snug"><%= stock.title %></h3>
             </div>
             <% c += 1 %>
           </article>
@@ -82,16 +82,16 @@
     </div>
     <div class="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4 item-text">
       <% c = 0 %>
-      <% @hits.each do |s| %>
+      <% @hits.each do |hit| %>
         <% break if c == 4 %>
-        <%= link_to (s) do %>
+        <%= link_to (hit) do %>
           <article class="flex flex-col dark:bg-gray-100">
-            <% if s.avatar.attached? %>
-              <%= image_tag s.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
+            <% if hit.avatar.attached? %>
+              <%= image_tag hit.avatar, class: "object-cover w-full h-52 dark:bg-gray-100" %></p>
             <% end %>
             <div class="flex flex-col flex-1 p-2">
-              <h3 class="flex-1 py-2 text-lg font-semibold leading-snug"><%= s.title %></h3>
-              <p><%= s.body %></p>
+              <h3 class="flex-1 py-2 text-lg font-semibold leading-snug"><%= hit.title %></h3>
+              <p><%= hit.body %></p>
             </div>
             <% c += 1 %>
           </article>

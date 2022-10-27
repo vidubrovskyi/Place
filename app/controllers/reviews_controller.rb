@@ -3,13 +3,6 @@ class ReviewsController < ApplicationController
   before_action :get_shop
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @reviews = @shop.reviews
-  end
-
-  def show
-  end
-
   def new
     @review = @shop.reviews.build
   end

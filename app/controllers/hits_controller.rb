@@ -14,14 +14,12 @@ class HitsController < ApplicationController
     end
   end
 
-
   def show
   end
 
   def index
     @search = Hit.ransack(params[:q])
     @pagy, @hits = pagy_countless(@search.result(distinct: true), items: 4)
-
     respond_to do |format|
       format.html
       format.turbo_stream

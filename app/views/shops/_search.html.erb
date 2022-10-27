@@ -1,44 +1,43 @@
 <div class="hidden md:flex md:flex-shrink-0">
   <div class="flex flex-col w-64">
     <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white border-r border-gray-50">
-
       <fieldset class="search-field">
         <div class="flex flex-col items-center flex-shrink-0 px-4">
           <legend class=" px-8 text-left focus:outline-none block p-2 text-xl font-medium tracking-tighter text-gray-900 transition duration-500 ease-in-out transform hover:text-gray-900">Пошук</legend>
         </div>
         <div class="flex flex-col flex-grow px-4 mt-5">
-          <%= search_form_for @search do |f| %>
+          <%= search_form_for @search do |search| %>
 
             <div class="field">
-              <%= f.label "Ціна", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
-              <%= f.collection_check_boxes :prices_id_in_any, Price.all, :id, :price do |b| %>
+              <%= search.label "Ціна", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
+              <%= search.collection_check_boxes :prices_id_in_any, Price.all, :id, :price do |price| %>
                 <div class="collection-check-box items-center w-full px-4 py-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50">
-                  <%= b.check_box %>
-                  <%= b.label %>
+                  <%= price.check_box %>
+                  <%= price.label %>
                 </div>
               <% end %>
             </div>
 
             <div class="field">
-              <%= f.label "Тип закладу", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
-              <%= f.collection_check_boxes :pts_id_in_any, Pt.all, :id, :pt do |b| %>
+              <%= search.label "Тип закладу", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
+              <%= search.collection_check_boxes :pts_id_in_any, Pt.all, :id, :pt do |pt| %>
                 <div class="collection-check-box items-center w-full px-4 py-1 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50">
-                  <%= b.check_box %>
-                  <%= b.label %>
+                  <%= pt.check_box %>
+                  <%= pt.label %>
                 </div>
               <% end %>
             </div>
 
             <div class="field">
-              <%= f.label "Особливості закладу", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
-              <%= f.collection_check_boxes :benefits_id_in_any, Benefit.all, :id, :children do |b| %>
+              <%= search.label "Особливості закладу", class: "px-4 pt-4 font-medium text-gray-900 uppercase" %><br />
+              <%= search.collection_check_boxes :benefits_id_in_any, Benefit.all, :id, :children do |benefit| %>
                 <div class="collection-check-box items-center w-full px-4 py-1 mt-1 text-base text-gray-900 transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline hover:bg-gray-50">
-                  <%= b.check_box %>
-                  <%= b.label %>
+                  <%= benefit.check_box %>
+                  <%= benefit.label %>
                 </div>
               <% end %>
             </div>
-            <div class="actions px-4 pt-4 mb-4"><%= f.submit "Search", class: "px-8 py-2 font-semibold border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %></div>
+            <div class="actions px-4 pt-4 mb-4"><%= search.submit "Search", class: "px-8 py-2 font-semibold border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %></div>
           <% end %>
         </div>
       </fieldset>

@@ -11,11 +11,8 @@ class Shop < ApplicationRecord
   has_many_attached :images
   has_one_attached :avatar
 
-  validates :name, presence: true, length: {maximum: 140}
-  validates :address, presence: true, length: {maximum: 140}
+  validates :name, :address, :contact, presence: true, length: {maximum: 140}
   validates :description, presence: true, length: {maximum: 600}
-  validates :contact, presence: true, length: {maximum: 140}
-
 
   acts_as_votable
 
