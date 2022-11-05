@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
 
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :vote, :hovercard]
+  before_action :set_shop, only: %i[ show edit update destroy vote hovercard]
 
   def index
     @search = Shop.ransack(params[:q])
@@ -40,9 +40,9 @@ class ShopsController < ApplicationController
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
-      redirect_to shop_path(@shop)
+      redirect_to shop_path(@shop), notice: "Shop was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -54,15 +54,15 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update(shop_params)
-      redirect_to shop_path(@shop)
+      redirect_to shop_path(@shop), notice: "Shop was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @shop.destroy
-    redirect_to shops_path, status: :see_other
+    redirect_to shops_path, status: :see_other, notice: "Shop was successfully destroyed."
   end
 
   private

@@ -1,18 +1,10 @@
 <%= form_with(model: price, class: "contents") do |form| %>
-  <% if price.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(price.errors.count, "error") %> prohibited this price from being saved:</h2>
-      <ul>
-        <% price.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+  <%= render 'static_page/errors', object: price %>
 
   <div class="my-5">
     <%= form.label :price %>
-    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :price, class: "form-control block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

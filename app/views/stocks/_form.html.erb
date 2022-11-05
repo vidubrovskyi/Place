@@ -1,21 +1,32 @@
 <% if action_name == "new" %>
+
   <section class="p-6 dark:text-gray-800">
+
+    <%= render 'static_page/errors', object: smth %>
+
     <%= form_with(url: create_stocks_path, model: smth) do |form|%>
+
       <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+
         <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+
           <div class="space-y-2 col-span-full lg:col-span-1">
             <p class="font-medium">Акція</p>
             <p class="text-xs">Додайте якцію</p>
           </div>
-            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+
+          <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+
             <div class="col-span-full sm:col-span-3">
               <%= form.label "Заголовок"%>
               <%= form.text_field :title, class: "w-full rounded-md dark:text-gray-800", placeholder: " Заголовок" %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Контент"%>
               <%= form.text_area :body, class: "w-full rounded-md dark:text-gray-800", placeholder: " Контент" %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Заклад"%><br />
               <%= form.collection_check_boxes :shop_ids, Shop.all, :id, :name do |shop| %>
@@ -25,38 +36,57 @@
                 </div>
               <% end %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Зображення"%>
               <div class="flex items-center space-x-2">
                 <%= form.file_field :avatar %>
               </div>
             </div>
+
             <div class="col-span-full">
               <%= form.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
             </div>
+
           </div>
+
         </fieldset>
+
       </form>
+
     <% end %>
+
   </section>
+
 <% else %>
+
   <section class="p-6 dark:text-gray-800">
+
+    <%= render 'static_page/errors', object: smth %>
+
     <%= form_with model: smth do |form|%>
+
       <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+
         <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-100">
+
           <div class="space-y-2 col-span-full lg:col-span-1">
             <p class="font-medium">Акція</p>
             <p class="text-xs">Редагуйте акцію</p>
           </div>
+
           <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+
             <div class="col-span-full sm:col-span-3">
               <%= form.label "Заголовок"%>
               <%= form.text_field :title, class: "w-full rounded-md dark:text-gray-800", placeholder: " Заголовок" %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Контент"%>
               <%= form.text_area :body, class: "w-full rounded-md dark:text-gray-800", placeholder: " Контент" %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Заклад"%><br />
               <%= form.collection_check_boxes :shop_ids, Shop.all, :id, :name do |shop| %>
@@ -66,18 +96,26 @@
                 </div>
               <% end %>
             </div>
+
             <div class="col-span-full">
               <%= form.label "Зображення"%>
               <div class="flex items-center space-x-2">
                 <%= form.file_field :avatar %>
               </div>
             </div>
+
             <div class="col-span-full">
               <%= form.submit "Відправити", class: "px-5 py-1 border rounded dark:border-gray-900 dark:text-gray-900 cursor-pointer hover:bg-violet-400" %>
             </div>
+
           </div>
+
         </fieldset>
+
       </form>
+
     <% end %>
+
   </section>
+
 <% end %>

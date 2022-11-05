@@ -8,9 +8,9 @@ class HitsController < ApplicationController
   def create
     @hit = Hit.new(hit_params)
     if @hit.save
-      redirect_to hit_path(@hit)
+      redirect_to hit_path(@hit), notice: "Hit was successfully created."
     else
-      redirect_to root_path
+      redirect_to root_path, status: :unprocessable_entity
     end
   end
 
@@ -31,15 +31,15 @@ class HitsController < ApplicationController
 
   def update
     if @hit.update(hit_params)
-      redirect_to hit_path(@hit)
+      redirect_to hit_path(@hit), notice: "Hit was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @hit.destroy
-    redirect_to hits_path, status: :see_other
+    redirect_to hits_path, status: :see_other, notice: "Hit was successfully destroyed."
   end
 
   private

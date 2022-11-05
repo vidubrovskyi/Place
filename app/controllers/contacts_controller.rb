@@ -11,16 +11,16 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      redirect_to root_path
+      redirect_to root_path, notice: "Contact was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-    redirect_to contacts_path, status: :see_other
+    redirect_to contacts_path, status: :see_other, notice: "Contact was successfully destroyed."
   end
 
   private

@@ -18,36 +18,24 @@ class PtsController < ApplicationController
   def create
     @pt = Pt.new(pt_params)
 
-    respond_to do |format|
-      if @pt.save
-        format.html { redirect_to pt_url(@pt), notice: "Pt was successfully created." }
-        format.json { render :show, status: :created, location: @pt }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @pt.errors, status: :unprocessable_entity }
-      end
+    if @pt.save
+      redirect_to pt_url(@pt), notice: "Pt was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @pt.update(pt_params)
-        format.html { redirect_to pt_url(@pt), notice: "Pt was successfully updated." }
-        format.json { render :show, status: :ok, location: @pt }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @pt.errors, status: :unprocessable_entity }
-      end
+    if @pt.update(pt_params)
+      redirect_to pt_url(@pt), notice: "Pt was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @pt.destroy
-
-    respond_to do |format|
-      format.html { redirect_to pts_url, notice: "Pt was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to pts_url, notice: "Pt was successfully destroyed."
   end
 
   private

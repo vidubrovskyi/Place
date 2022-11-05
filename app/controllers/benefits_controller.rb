@@ -17,24 +17,25 @@ class BenefitsController < ApplicationController
 
   def create
     @benefit = Benefit.new(benefit_params)
+
     if @benefit.save
-      redirect_to benefits_path
+      redirect_to benefits_path, notice: "Benefit was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    if @benefit.update(benefit_params)
+    if @benefit.update(benefit_params), notice: "Benefit was successfully updated."
       redirect_to benefits_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @benefit.destroy
-    redirect_to benefits_path
+    redirect_to benefits_path, notice: "Benefit was successfully destroyed."
   end
 
   private

@@ -18,36 +18,24 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
 
-    respond_to do |format|
-      if @price.save
-        format.html { redirect_to price_url(@price), notice: "Price was successfully created." }
-        format.json { render :show, status: :created, location: @price }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @price.errors, status: :unprocessable_entity }
-      end
+    if @price.save
+      redirect_to price_url(@price), notice: "Price was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @price.update(price_params)
-        format.html { redirect_to price_url(@price), notice: "Price was successfully updated." }
-        format.json { render :show, status: :ok, location: @price }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @price.errors, status: :unprocessable_entity }
-      end
+    if @price.update(price_params)
+      redirect_to price_url(@price), notice: "Price was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @price.destroy
-
-    respond_to do |format|
-      format.html { redirect_to prices_url, notice: "Price was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to prices_url, notice: "Price was successfully destroyed."
   end
 
   private

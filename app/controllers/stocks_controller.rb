@@ -8,9 +8,9 @@ class StocksController < ApplicationController
   def create
     @stock = Stock.new(stock_params)
     if @stock.save
-      redirect_to stock_path(@stock)
+      redirect_to stock_path(@stock), notice: "Stock was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entit
     end
   end
 
@@ -32,15 +32,15 @@ class StocksController < ApplicationController
 
   def update
     if @stock.update(stock_params)
-      redirect_to stock_path(@stock)
+      redirect_to stock_path(@stock), notice: "Stock was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entit
     end
   end
 
   def destroy
     @stock.destroy
-    redirect_to stocks_path, status: :see_other
+    redirect_to stocks_path, status: :see_other, notice: "Stock was successfully destroyed."
   end
 
   private
